@@ -14,10 +14,11 @@ enum class TaskState {
 
 class Task {
 public:
-    using TaskFunction = function<void()>;
-    Task(int id, const TaskFunction& func, const string& name = "");
+    using TaskFunction = function<void()>; 
+    Task(int id, const TaskFunction& func, const string& name = "", const TaskState state);
     int getID() const;
     TaskState getState() const;
+    void setState(const TaskState newState);
     // For debugging / logging
     string getName() const;
     // Accessor for worker execution

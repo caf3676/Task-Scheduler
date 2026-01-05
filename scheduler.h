@@ -30,7 +30,8 @@ public:
 
 private:
     ThreadPool& pool;                         // reference to your thread pool
-    unordered_map<int, Task> tasks;      // all tasks
+    unordered_map<int, shared_ptr<Task>> tasks;      // all tasks
+    unordered_map<int, vector<int>> reverseDependencyMap; // Remaining deps for a waiting task
     queue<int> readyQueue;               // IDs of READY tasks
 
     mutex mtx;                            // protects scheduler state
